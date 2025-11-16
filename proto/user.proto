@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "gen/user;userpb";
+option java_package = "com.example.user";
+option java_multiple_files = true;
+
+service UserService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+  rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse);
+  rpc AddAddress(AddAddressRequest) returns (AddAddressResponse);
+}
+
+message GetProfileRequest {
+  string user_id = 1;
+}
+
+message GetProfileResponse {
+  string user_id = 1;
+  string email = 2;
+  string name = 3;
+}
+
+message ListAddressesRequest {
+  string user_id = 1;
+}
+
+message Address {
+  string address_id = 1;
+  string full_address = 2;
+}
+
+message ListAddressesResponse {
+  repeated Address addresses = 1;
+}
+
+message AddAddressRequest {
+  string user_id = 1;
+  string full_address = 2;
+}
+
+message AddAddressResponse {
+  string address_id = 1;
+}

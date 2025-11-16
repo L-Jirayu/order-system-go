@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package menu;
+
+option go_package = "gen/menu;menupb";
+option java_package = "com.example.menu";
+option java_multiple_files = true;
+
+service MenuService {
+  rpc ListRestaurants(ListRestaurantsRequest) returns (ListRestaurantsResponse);
+  rpc ListMenuItems(ListMenuItemsRequest) returns (ListMenuItemsResponse);
+}
+
+message Restaurant {
+  string restaurant_id = 1;
+  string name = 2;
+}
+
+message MenuItem {
+  string item_id = 1;
+  string restaurant_id = 2;
+  string name = 3;
+  double price = 4;
+}
+
+message ListRestaurantsRequest {}
+
+message ListRestaurantsResponse {
+  repeated Restaurant restaurants = 1;
+}
+
+message ListMenuItemsRequest {
+  string restaurant_id = 1;
+}
+
+message ListMenuItemsResponse {
+  repeated MenuItem items = 1;
+}

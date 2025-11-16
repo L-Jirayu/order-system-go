@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "gen/payment;paymentpb";
+option java_package = "com.example.payment";
+option java_multiple_files = true;
+
+service PaymentService {
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+  rpc GetPaymentStatus(GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+}
+
+message CreatePaymentRequest {
+  string user_id = 1;
+  double amount = 2;
+}
+
+message CreatePaymentResponse {
+  string payment_id = 1;
+  string status = 2; // PENDING / SUCCESS
+}
+
+message GetPaymentStatusRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentStatusResponse {
+  string payment_id = 1;
+  string status = 2;
+}
