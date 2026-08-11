@@ -30,7 +30,7 @@ func runTestClientAsync() <-chan string {
 func runTestClient() string {
 	// gRPC dailer ใหม่ เลิกใช้ grpc.Dial()
 	conn, err := grpc.NewClient(
-		"java-core:9001",
+		"localhost:9001", //java-core
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 
